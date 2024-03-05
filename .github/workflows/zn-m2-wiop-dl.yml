@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/breeze303/ipq60xx-6.1
-  REPO_BRANCH: ipq60xx-wifi
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/zn-m2-wiop.config
   DIY_P1_SH: diy-part1.sh
