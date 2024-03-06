@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: zn-m2-wiop-dl
+name: zn-m2-jiayim-dl
 
 on:
   repository_dispatch:
@@ -20,10 +20,10 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/breeze303/ipq60xx-6.1
-  REPO_BRANCH: main
+  REPO_URL: https://github.com/JiaY-shi/openwrt
+  REPO_BRANCH: ipq60xx-devel_nss
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/zn-m2-wiop.config
+  CONFIG_FILE: config/zn-m2-jiayim.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -70,7 +70,6 @@ jobs:
 
     - name: Update feeds
       run: |
-        cp -f config/bre61/feeds.conf-op.default openwrt/feeds.conf.default
         cd openwrt && ./scripts/feeds update -a
 
     - name: Install feeds
@@ -80,7 +79,18 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        cp -f config/bre61/config-6.1 openwrt/target/linux/qualcommax/config-6.1
+        cp -f config/jiay6/config-6.1 openwrt/target/linux/qualcommax/config-6.1
+        cp -f config/jiay6/qualcommax_ipq60xx openwrt/package/boot/uboot-envtools/files/qualcommax_ipq60xx
+        cp -f config/jiay6/Makefile openwrt/package/firmware/ipq-wifi/Makefile
+        cp -f config/jiay6/board-zn_m2.ipq6018 openwrt/package/firmware/ipq-wifi/src/board-zn_m2.ipq6018
+        cp -f config/jiay6/ipq6018-cmiot.dtsi openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-cmiot.dtsi
+        cp -f config/jiay6/ipq6018-ess.dtsi openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-ess.dtsi
+        cp -f config/jiay6/ipq6018-m2.dts openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-m2.dts
+        cp -f config/jiay6/ipq60xx.mk openwrt/target/linux/qualcommax/image/ipq60xx.mk
+        cp -f config/jiay6/01_leds openwrt/target/linux/qualcommax/ipq60xx/base-files/etc/board.d/01_leds
+        cp -f config/jiay6/02_network openwrt/target/linux/qualcommax/ipq60xx/base-files/etc/board.d/02_network
+        cp -f config/jiay6/11-ath11k-caldata openwrt/target/linux/qualcommax/ipq60xx/base-files/etc/hotplug.d/firmware/11-ath11k-caldata
+        cp -f config/jiay6/platform.sh openwrt/target/linux/qualcommax/ipq60xx/base-files/lib/upgrade/platform.sh
         touch openwrt/target/linux/qualcommax/Makefile
         chmod +x $DIY_P2_SH
         cd openwrt
@@ -129,7 +139,7 @@ jobs:
       uses: actions/upload-artifact@v3
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: zn-m2-wiop${{ env.FILE_DATE }}
+        name: zn-m2-jiayim${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Upload firmware to cowtransfer
