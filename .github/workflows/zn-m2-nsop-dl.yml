@@ -83,6 +83,7 @@ jobs:
         cp -f config/bre61/nsconfig-6.1 openwrt/target/linux/qualcommax/config-6.1
         cp -f config/bre61/02_network openwrt/target/linux/qualcommax/ipq60xx/base-files/etc/board.d/02_network
         cp -f config/bre61/ipq6018-cmiot.dtsi openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-cmiot.dtsi
+        cp -f config/jiay6/ipq6018-ess.dtsi openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-ess.dtsi
         touch openwrt/target/linux/qualcommax/Makefile
         chmod +x $DIY_P2_SH
         cd openwrt
