@@ -27,27 +27,27 @@
 
 		mesh {
 			label = "m2:blue:mesh";
-			gpio = <&tlmm 73 GPIO_ACTIVE_HIGH>;
+			gpio = <&tlmm 73 GPIO_ACTIVE_LOW>;
 		};
 
 		lan {
 			label = "m2:blue:lan";
-			gpio = <&tlmm 74 GPIO_ACTIVE_HIGH>;
+			gpio = <&tlmm 74 GPIO_ACTIVE_LOW>;
 		};
 
 		wan {
 			label = "m2:blue:wan";
-			gpio = <&tlmm 37 GPIO_ACTIVE_HIGH>;
+			gpio = <&tlmm 37 GPIO_ACTIVE_LOW>;
 		};
 
 		wlan5g {
 			label = "m2:blue:wlan5g";
-			gpio = <&tlmm 35 GPIO_ACTIVE_HIGH>;
+			gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
 		};
 
 		wlan2g {
 			label = "m2:blue:wlan2g";
-			gpio = <&tlmm 70 GPIO_ACTIVE_HIGH>;
+			gpio = <&tlmm 70 GPIO_ACTIVE_LOW>;
 		};
 	};
 };
