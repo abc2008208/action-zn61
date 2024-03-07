@@ -70,6 +70,7 @@ jobs:
 
     - name: Update feeds
       run: |
+        cp -f config/jiay6/feeds.conf-op.default openwrt/feeds.conf.default
         cd openwrt && ./scripts/feeds update -a
 
     - name: Install feeds
