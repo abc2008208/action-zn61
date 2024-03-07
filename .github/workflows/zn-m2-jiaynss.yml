@@ -73,6 +73,16 @@ jobs:
         #cp -f config/jiay6/feeds.conf-op.default openwrt/feeds.conf.default
         cd openwrt && ./scripts/feeds update -a
 
+    - name: add msd_lite
+      run: |
+        cp -rf config/app/luci-app-msd_lite openwrt/feeds/luci/applications
+        cp -rf config/app/msd_lite openwrt/feeds/packages/net
+        cd openwrt
+        ./scripts/feeds update packages
+        ./scripts/feeds update luci
+        ./scripts/feeds install -a -p packages
+        ./scripts/feeds install -a -p luci
+
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
