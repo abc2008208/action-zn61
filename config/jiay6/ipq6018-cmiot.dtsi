@@ -22,8 +22,6 @@
 		ethernet3 = &dp4;
 	};
 
-    /delete-node/ rpm-glink;
-
 	chosen {
 		bootargs-append = " root=/dev/ubiblock0_1 swiotlb=1";
 	};
