@@ -73,6 +73,11 @@ jobs:
         cp -f config/jiay6/feeds.conf-im.default openwrt/feeds.conf.default
         cd openwrt && ./scripts/feeds update -a
 
+    - name: add autocore
+      run: |
+        cp -rf config/app/emortal openwrt/package
+        touch openwrt/package/Makefile
+
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
