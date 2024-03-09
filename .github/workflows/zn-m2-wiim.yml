@@ -81,6 +81,7 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cp -f config/bre61/config-6.1 openwrt/target/linux/qualcommax/config-6.1
+        cp -f config/bre61/sysupgrade openwrt/package/base-files/files/sbin/sysupgrade
         touch openwrt/target/linux/qualcommax/Makefile
         chmod +x $DIY_P2_SH
         cd openwrt
