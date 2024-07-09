@@ -20,7 +20,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/breeze303/ipq60xx-6.1
+  REPO_URL: https://github.com/breeze303/openwrt-6.x
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/zn-m2-wiim.config
@@ -70,7 +70,7 @@ jobs:
 
     - name: Update feeds
       run: |
-        cp -f config/bre61/feeds.conf-im.default openwrt/feeds.conf.default
+        #cp -f config/bre61/feeds.conf-im.default openwrt/feeds.conf.default
         cd openwrt && ./scripts/feeds update -a
 
     - name: Install feeds
@@ -80,8 +80,8 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        cp -f config/bre61/config-6.1 openwrt/target/linux/qualcommax/config-6.1
-        cp -f config/bre61/sysupgrade openwrt/package/base-files/files/sbin/sysupgrade
+        #cp -f config/bre61/config-6.1 openwrt/target/linux/qualcommax/config-6.1
+        #cp -f config/bre61/sysupgrade openwrt/package/base-files/files/sbin/sysupgrade
         touch openwrt/target/linux/qualcommax/Makefile
         chmod +x $DIY_P2_SH
         cd openwrt
