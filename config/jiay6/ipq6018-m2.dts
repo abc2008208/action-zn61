@@ -54,20 +54,13 @@
 
 &tlmm {
 	leds_pins: leds_pins {
-		mux_0 {
+		mux {
 			pins = "gpio35", "gpio37",
-				"gpio70", "gpio73",
-				"gpio74";
+				"gpio58", "gpio70",
+				"gpio73", "gpio74";
 			function = "gpio";
 			drive-strength = <8>;
 			bias-pull-down;
-		};
-
-		mux_1 {
-			pins = "gpio58";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-up;
 		};
 	};
 };
