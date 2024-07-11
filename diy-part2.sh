@@ -14,4 +14,4 @@
 sed -i 's/192.168.1.1/192.168.6.1/g' package/base-files/files/bin/config_generate
 
 # 修改主机名(将默认的LibWrt改成OpenWrt)
-# sed -i 's/LibWrt/OpenWrt/g' package/base-files/files/bin/config_generate
+sed -i 's/LibWrt/OpenWrt/g' package/base-files/files/bin/config_generate
