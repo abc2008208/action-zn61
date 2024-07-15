@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/abc2008208/kopenwrt-6.x
-  REPO_BRANCH: main
+  REPO_BRANCH: c90b-240708
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/zn-m2-wiim.config
   DIY_P1_SH: diy-part1.sh
