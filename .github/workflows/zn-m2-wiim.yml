@@ -20,7 +20,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/abc2008208/kopenwrt-6.x
+  REPO_URL: https://github.com/open0072023/openwrt-6.x
   REPO_BRANCH: c90b-240708
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/zn-m2-wiim.config
