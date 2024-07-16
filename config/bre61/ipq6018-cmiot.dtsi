@@ -4,6 +4,7 @@
 
 #include "ipq6018.dtsi"
 #include "ipq6018-ess.dtsi"
+#include "ipq6018-cpufreq.dtsi"
 #include "ipq6018-256m.dtsi"
 #include "ipq6018-nss.dtsi"
 
@@ -22,10 +23,8 @@
 		ethernet3 = &dp4;
 	};
 
-    /delete-node/ rpm-glink;
-
 	chosen {
-		bootargs-append = " root=/dev/ubiblock0_1 swiotlb=1";
+		bootargs-append = " root=/dev/ubiblock0_1";
 	};
 
 	keys {
@@ -142,26 +141,26 @@
 
 	switch_lan_bmp = <(ESS_PORT1 | ESS_PORT2 | ESS_PORT4)>; /* lan port bitmap */
 	switch_wan_bmp = <ESS_PORT5>; /* wan port bitmap */
-	switch_mac_mode = <MAC_MODE_DISABLED>; /* MAC mode for UNIPHY instance 0 */
-	switch_mac_mode1 = <MAC_MODE_DISABLED>; /* MAC mode for UNIPHY instance 1 */
-	switch_mac_mode2 = <MAC_MODE_DISABLED>; /* MAC mode for UNIPHY instance 2 */
+	switch_mac_mode = <MAC_MODE_PSGMII>; /* MAC mode for UNIPHY instance 0 */
+	switch_mac_mode1 = <MAC_MODE_PSGMII>; /* MAC mode for UNIPHY instance 1 */
+	switch_mac_mode2 = <MAC_MODE_PSGMII>; /* MAC mode for UNIPHY instance 2 */
 
 	qcom,port_phyinfo {
 		port@0 {
-			port_id = <0x01>;
-			phy_address = <0x00>;
+			port_id = <1>;
+			phy_address = <0>;
 		};
 		port@1 {
-			port_id = <0x02>;
-			phy_address = <0x01>;
+			port_id = <2>;
+			phy_address = <1>;
 		};
 		port@2 {
-			port_id = <0x04>;
-			phy_address = <0x03>;
+			port_id = <4>;
+			phy_address = <3>;
 		};
 		port@3 {
-			port_id = <0x05>;
-			phy_address = <0x04>;
+			port_id = <5>;
+			phy_address = <4>;
 		};
 	};
 };
@@ -205,7 +204,6 @@
 &qusb_phy_1 {
 	status = "okay";
 };
-
 
 &ssphy_0 {
 	status = "okay";
