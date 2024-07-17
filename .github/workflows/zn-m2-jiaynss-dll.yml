@@ -91,6 +91,7 @@ jobs:
         cp -f config/jiay6/board-zn_m2.ipq6018 openwrt/package/firmware/ipq-wifi/src/board-zn_m2.ipq6018
         cp -f config/jiay6/ipq6018-cmiot.dtsi openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-cmiot.dtsi
         cp -f config/jiay6/ipq6018-m2.dts openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-m2.dts
+        cp -f config/jiay6/ipq6018-ax18.dts openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-ax18.dts
         cp -f config/jiay6/ipq60xx.mk openwrt/target/linux/qualcommax/image/ipq60xx.mk
         cp -f config/jiay6/01_leds openwrt/target/linux/qualcommax/ipq60xx/base-files/etc/board.d/01_leds
         cp -f config/jiay6/02_network openwrt/target/linux/qualcommax/ipq60xx/base-files/etc/board.d/02_network
