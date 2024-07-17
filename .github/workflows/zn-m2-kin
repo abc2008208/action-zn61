@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: zn-m2-nsop
+name: zn-m2-kin
 
 on:
   repository_dispatch:
@@ -20,13 +20,13 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/breeze303/ipq60xx-6.1
-  REPO_BRANCH: Test
+  REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
+  REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/zn-m2-nsop.config
+  CONFIG_FILE: config/zn-m2-kin.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
@@ -46,8 +46,15 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo -E apt-get -qq update
-        sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh)'
+        sudo apt update -y
+        sudo apt full-upgrade -y
+        sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
+         bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
+         git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
+         libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
+         mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools \
+         libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip \
+         vim wget xmlto xxd zlib1g-dev
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
@@ -70,7 +77,6 @@ jobs:
 
     - name: Update feeds
       run: |
-        cp -f config/bre61/feeds.conf-op.default openwrt/feeds.conf.default
         cd openwrt && ./scripts/feeds update -a
 
     - name: Install feeds
@@ -80,10 +86,6 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        cp -f config/bre61/nsconfig-6.1 openwrt/target/linux/qualcommax/config-6.1
-        cp -f config/bre61/02_network openwrt/target/linux/qualcommax/ipq60xx/base-files/etc/board.d/02_network
-        cp -f config/bre61/ipq6018-cmiot.dtsi openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-cmiot.dtsi
-        cp -f config/jiay6/ipq6018-ess.dtsi openwrt/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6018-ess.dtsi
         touch openwrt/target/linux/qualcommax/Makefile
         chmod +x $DIY_P2_SH
         cd openwrt
@@ -140,7 +142,7 @@ jobs:
       uses: actions/upload-artifact@v3
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: zn-m2-nsop${{ env.FILE_DATE }}
+        name: zn-m2-kin${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Upload firmware to cowtransfer
