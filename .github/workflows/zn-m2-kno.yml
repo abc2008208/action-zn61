@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: zn-m2-wiimn
+name: zn-m2-kno
 
 on:
   repository_dispatch:
@@ -20,10 +20,10 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/abc2008208/kopenwrt-6.x
+  REPO_URL: https://github.com/King-Of-Knights/openwrt-6.x
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/zn-m2-wiimo.config
+  CONFIG_FILE: config/zn-m2-kno.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -142,7 +142,7 @@ jobs:
       uses: actions/upload-artifact@v3
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: zn-m2-wiimn${{ env.FILE_DATE }}
+        name: zn-m2-kno${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Upload firmware to cowtransfer
